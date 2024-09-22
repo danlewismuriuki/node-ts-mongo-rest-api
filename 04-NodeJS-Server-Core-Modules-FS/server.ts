@@ -13,7 +13,13 @@ const requestListener = (request: IncomingMessage, response: ServerResponse) => 
         if (error) {
             console.log(error)
         }
-        response.end(`<pre>${result}</pre>`)
+        fs.writeFile(path.join(__dirname, 'data', 'data.txt'), result, 'utf-8', (error) => {
+            if (error) {
+                console.log("there is an error")
+            }
+            response.end(`<pre>Data has been written: ${result}</pre>`)
+        })
+        //response.end(`<pre>${result}</pre>`)
     });
 
 
